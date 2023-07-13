@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import type { FetchResponse } from '../types/fetch';
+
 import { EXPO_PUBLIC_RAPID_API_KEY } from '@/utils/environment-variables';
 
-type QueryType = {
+type ParamsType = {
   query: string;
   page: number;
   num_pages: number;
 };
 
 type UseFetchType = {
-  data: any;
+  data: FetchResponse['data'] | undefined;
   isLoading: boolean;
   error: Error | undefined;
   refetch: () => void;
@@ -18,8 +20,8 @@ type UseFetchType = {
 
 const GET_METHOD_TYPE = 'GET';
 
-const useFetch = (endpoint: string, query: QueryType): UseFetchType => {
-  const [data, setData] = useState([]);
+const useFetch = (endpoint: string, params: ParamsType): UseFetchType => {
+  const [data, setData] = useState<FetchResponse['data']>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error>();
 
@@ -29,7 +31,7 @@ const useFetch = (endpoint: string, query: QueryType): UseFetchType => {
     method: GET_METHOD_TYPE,
     url: url.href,
     params: {
-      ...query,
+      ...params,
     },
     headers: {
       'X-RapidAPI-Key': EXPO_PUBLIC_RAPID_API_KEY,
@@ -41,8 +43,13 @@ const useFetch = (endpoint: string, query: QueryType): UseFetchType => {
     try {
       setIsLoading(true);
 
-      const response = await axios.request(options);
-      setData(response.data as any);
+      const response = (await axios.request(options)) as FetchResponse;
+
+      if (!response.data || response.status !== 'OK') {
+        throw new Error(`Data  fetching error with  query = ${params.query}`);
+      }
+
+      setData(response.data);
     } catch (error) {
       setError(error as Error);
       console.error(error);
