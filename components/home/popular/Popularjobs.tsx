@@ -1,5 +1,5 @@
-import type { FC, JSX } from 'react';
-import React, { useState } from 'react';
+import type { FC, ReactElement } from 'react';
+import React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import {
   View,
@@ -23,7 +23,7 @@ const Popularjobs: FC = () => {
     num_pages: 1,
   });
 
-  const renderContent = (): JSX.Element => {
+  const renderContent = (): ReactElement => {
     if (isLoading) {
       return <ActivityIndicator size="large" color={COLORS.primary} />;
     }
@@ -35,11 +35,11 @@ const Popularjobs: FC = () => {
     return (
       <FlatList
         data={data}
-        renderItem={({ item }): JSX.Element => (
+        renderItem={({ item }): ReactElement => (
           <PopularJobCard
             job={item}
             isSelected={false}
-            onCardPress={() => {}}
+            hadnleCardPress={() => {}}
           />
         )}
         keyExtractor={({ job_id }): string => job_id}

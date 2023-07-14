@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { FC, JSX } from 'react';
+import type { FC, ReactElement } from 'react';
 import type { StyleProp, ImageStyle } from 'react-native';
 import {
   View,
@@ -55,7 +55,7 @@ const Welcome: FC = () => {
       <View style={styles.tabsContainer}>
         <FlatList
           data={jobTypes}
-          renderItem={({ item }: { item: string }): JSX.Element => (
+          renderItem={({ item }: { item: string }): ReactElement => (
             <JobTypeElement
               item={item}
               isActive={activeJobType === item}

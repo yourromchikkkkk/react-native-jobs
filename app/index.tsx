@@ -1,4 +1,4 @@
-import type { JSX, FC } from 'react';
+import type { ReactElement, FC } from 'react';
 import React, { useState } from 'react';
 import { View, SafeAreaView, ScrollView } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
@@ -26,10 +26,10 @@ const Home: FC = () => {
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
-          headerLeft: (): JSX.Element => (
+          headerLeft: (): ReactElement => (
             <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
           ),
-          headerRight: (): JSX.Element => (
+          headerRight: (): ReactElement => (
             <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
           ),
           headerTitle: '',

@@ -10,6 +10,7 @@ export type JobDetails = {
   employer_logo: string;
   job_title: string;
   job_country: string;
+  job_employment_type: string
 };
 
 type SearchFilterDataKeys =
