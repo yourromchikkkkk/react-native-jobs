@@ -33,5 +33,5 @@ export interface FetchResponse {
   status: string;
   request_id: string;
   paramenters: QueryParamenters;
-  data: JobDetails[] | SearchFilterDataType[];
+  data: JobDetails[];
 }

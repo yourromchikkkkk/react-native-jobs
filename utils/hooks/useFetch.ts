@@ -7,7 +7,7 @@ import { EXPO_PUBLIC_RAPID_API_KEY } from '@/utils/environment-variables';
 
 type ParamsType = {
   query: string;
-  page: number;
+  page?: number;
   num_pages: number;
 };
 
@@ -43,13 +43,14 @@ const useFetch = (endpoint: string, params: ParamsType): UseFetchType => {
     try {
       setIsLoading(true);
 
-      const response = (await axios.request(options)) as FetchResponse;
+      const response = await axios.request(options);
 
-      if (!response.data || response.status !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(`Data  fetching error with  query = ${params.query}`);
       }
 
-      setData(response.data);
+      const responseData = response.data as FetchResponse;
+      setData(responseData.data);
     } catch (error) {
       setError(error as Error);
       console.error(error);
