@@ -10,24 +10,14 @@ export type JobDetails = {
   employer_logo: string;
   job_title: string;
   job_country: string;
-  job_employment_type: string
-};
-
-type SearchFilterDataKeys =
-  | 'categories'
-  | 'job_titles'
-  | 'company_types'
-  | 'employers'
-  | 'date_posted'
-  | 'employment_types'
-  | 'job_requirements';
-
-type SearchFilterDataType = {
-  [key in SearchFilterDataKeys]: {
-    name: string;
-    value: string;
-    est_count: string;
-  }[];
+  job_employment_type: string;
+  job_description: string;
+  job_google_link: string;
+  job_highlights: {
+    Qualifications?: string[];
+    Responsibilities?: string[];
+    Benefits?: string[];
+  };
 };
 
 export interface FetchResponse {

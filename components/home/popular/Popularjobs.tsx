@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import styles from './popularjobs.style';
+import { COLORS, SIZES } from '../../../constants';
+import PopularJobCard from '../../common/cards/popular/PopularJobCard';
+import useFetch from '../../../utils/hooks/useFetch';
 
-import { COLORS, SIZES } from '@/constants';
-import PopularJobCard from '@/components/common/cards/popular/PopularJobCard';
-import useFetch from '@/utils/hooks/useFetch';
+import styles from './popularjobs.style';
 
 const Popularjobs: FC = () => {
   const router = useRouter();
@@ -39,7 +39,9 @@ const Popularjobs: FC = () => {
           <PopularJobCard
             job={item}
             isSelected={false}
-            hadnleCardPress={() => {}}
+            hadnleCardPress={(): void =>
+              router.push(`/job-details/${item.job_id}`)
+            }
           />
         )}
         keyExtractor={({ job_id }): string => job_id}

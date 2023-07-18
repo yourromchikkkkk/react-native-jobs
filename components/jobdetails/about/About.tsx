@@ -1,14 +1,22 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import type { FC } from 'react';
+import React from 'react';
+import { View, Text } from 'react-native';
 
-import styles from './about.style'
-
-const About = () => {
-  return (
-    <View>
-      <Text>About</Text>
-    </View>
-  )
+import styles from './about.style';
+interface IAbout {
+  title: string;
+  info: string;
 }
 
-export default About
+const About: FC<IAbout> = ({ title, info }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.headText}>{title}</Text>
+      <View style={styles.contentBox}>
+        <Text style={styles.contextText}>{info}</Text>
+      </View>
+    </View>
+  );
+};
+
+export default About;

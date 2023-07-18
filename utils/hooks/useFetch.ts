@@ -2,14 +2,20 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import type { FetchResponse } from '../types/fetch';
+import { EXPO_PUBLIC_RAPID_API_KEY } from '../../utils/environment-variables';
 
-import { EXPO_PUBLIC_RAPID_API_KEY } from '@/utils/environment-variables';
-
-type ParamsType = {
+type SearchParamsType = {
   query: string;
   page?: number;
-  num_pages: number;
+  num_pages?: number;
 };
+
+type JobDetailsParams = {
+  job_id: string;
+  extended_publisher_details?: boolean;
+};
+
+type ParamsType = SearchParamsType | JobDetailsParams;
 
 type UseFetchType = {
   data: FetchResponse['data'] | undefined;
@@ -46,7 +52,7 @@ const useFetch = (endpoint: string, params: ParamsType): UseFetchType => {
       const response = await axios.request(options);
 
       if (response.status !== 200) {
-        throw new Error(`Data  fetching error with  query = ${params.query}`);
+        throw new Error(`Data  fetching error`);
       }
 
       const responseData = response.data as FetchResponse;

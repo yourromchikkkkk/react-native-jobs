@@ -14,7 +14,7 @@ const Layout: FC = () => {
   });
 
   useEffect(() => {
-    const hideSplashScreen = async () => {
+    const hideSplashScreen = async (): Promise<void> => {
       if (fontsLoaded) {
         await SplashScreen.hideAsync();
       }

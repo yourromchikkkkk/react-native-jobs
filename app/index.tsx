@@ -13,7 +13,7 @@ import {
 
 const Home: FC = () => {
   const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <SafeAreaView
@@ -38,7 +38,11 @@ const Home: FC = () => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.medium }}>
-          <Welcome />
+          <Welcome
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onSearchPress={(): void => router.push(`/search/${searchQuery}`)}
+          />
           <Popularjobs />
           <Nearbyjobs />
         </View>

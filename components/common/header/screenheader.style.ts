@@ -3,11 +3,6 @@ import { StyleSheet } from 'react-native';
 
 import { COLORS, SIZES } from '../../../constants';
 
-interface IStyle {
-  btnContainer: ViewStyle;
-  btnImage: (dimension: number) => ViewStyle | TextStyle | ImageStyle;
-}
-
 const styles = StyleSheet.create({
   btnContainer: {
     width: 40,

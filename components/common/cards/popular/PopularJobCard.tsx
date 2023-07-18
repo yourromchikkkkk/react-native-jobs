@@ -3,11 +3,11 @@ import React from 'react';
 import type { StyleProp, ImageStyle } from 'react-native';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 
-import styles from './popularjobcard.style';
+import type { JobDetails } from '../../../../utils/types/fetch';
+import { checkImageURL } from '../../../../utils/checkImageUrl';
+import { COLORS } from '../../../../constants';
 
-import { COLORS } from '@/constants';
-import type { JobDetails } from '@/utils/types/fetch';
-import { checkImageURL } from '@/utils/checkImageUrl';
+import styles from './popularjobcard.style';
 
 interface IPopularJobCard {
   job: JobDetails;

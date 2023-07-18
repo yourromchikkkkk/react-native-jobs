@@ -3,10 +3,10 @@ import React from 'react';
 import type { StyleProp, ImageStyle } from 'react-native';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
-import styles from './nearbyjobcard.style';
+import { checkImageURL } from '../../../../utils/checkImageUrl';
+import type { JobDetails } from '../../../../utils/types/fetch';
 
-import { checkImageURL } from '@/utils/checkImageUrl';
-import type { JobDetails } from '@/utils/types/fetch';
+import styles from './nearbyjobcard.style';
 
 interface INearbyJobCard {
   job: JobDetails;

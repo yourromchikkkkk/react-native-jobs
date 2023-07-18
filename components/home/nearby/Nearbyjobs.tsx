@@ -3,11 +3,11 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import styles from './nearbyjobs.style';
+import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
+import useFetch from '../../../utils/hooks/useFetch';
+import { COLORS } from '../../../constants';
 
-import NearbyJobCard from '@/components/common/cards/nearby/NearbyJobCard';
-import { COLORS } from '@/constants';
-import useFetch from '@/utils/hooks/useFetch';
+import styles from './nearbyjobs.style';
 
 const Nearbyjobs: FC = () => {
   const router = useRouter();
@@ -26,7 +26,13 @@ const Nearbyjobs: FC = () => {
     }
 
     return data.map(item => (
-      <NearbyJobCard key={item.job_id} job={item} hadnleCardPress={() => {}} />
+      <NearbyJobCard
+        key={item.job_id}
+        job={item}
+        hadnleCardPress={() => {
+          router.push(`/job-details/${item.job_id}`);
+        }}
+      />
     ));
   };
 
